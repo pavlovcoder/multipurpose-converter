@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>MCA Main Menu</title>
+        <!-- Install UI-framework Semantic UI -->
+        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <script
+          src="https://code.jquery.com/jquery-3.1.1.min.js"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+        <script src="semantic/dist/semantic.min.js"></script>
+        <!-- Embed external own files -->
+        <link rel="stylesheet" href="lib/index.css">
+    </head>
+    <body>
+        <!-- General code: -->
+        <div class="ui grid container stackable">
+            <div class="sixteen wide column">
+                <div class="ui attached stackable pointing menu">
+                    <div class="ui container">
+                    <div class="item" id="main-header">MCA</div>
+                    <a class="item active" href="#" id="item-2" onclick="toggle('item-2','weight')">Convert weight</a>
+                    <a class="item" href="#" id="item-3" onclick="toggle('item-3','temperature')">Convert temperature</a>
+                    <a class="item" href="#" id="item-4" onclick="toggle('item-4','length')">Convert length</a>
+                    <a class="item" href="#" id="item-5" onclick="toggle('item-5','speed')">Convert speed</a>
+                    <a class="item" href="#" id="item-6" onclick="toggle('item-6','si-prefixes')">Convert SI prefixes</a>
+                    <a class="item" href="#" id="item-7" onclick="toggle('item-7','numeral-system')">Convert numeral system</a>
+                    <div class="right menu">
+                        <div class="item">
+                            <div class="ui transparent icon input">
+                                <input type="text" placeholder="Search..." id="search-panel">
+                                <i class="search link icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="ten wide column" id="out-window">
+                <!-- Special toggleable window -->
+                <div class="ui segments" id="weight">
+                    <div class="ui segment">
+                        <p><i class="law icon"></i> Weight Converting</p>
+                    </div>
+                    <div class="ui secondary segment">
+                            <p>You can convert dynamically and simultaneously different weight measurements in different input fields. Just, click to the selected input field and choose the value for start converting.</p>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="pounds" class="ui basic label">Pounds</label>
+                            <input type="number" placeholder="Enter pounds" id="pounds" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">lb</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="kilograms" class="ui basic label">Kilograms</label>
+                            <input type="number" placeholder="Enter kilograms" id="kilograms" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">kg</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="tonnes" class="ui basic label">Tonnes</label>
+                            <input type="number" placeholder="Enter tonnes" id="tonnes" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">t</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="grams" class="ui basic label">Grams</label>
+                            <input type="number" placeholder="Enter grams" id="grams" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">gr</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="ounces" class="ui basic label">Ounces</label>
+                            <input type="number" placeholder="Enter ounces" id="ounces" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">oz</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="stones" class="ui basic label">Stones</label>
+                            <input type="number" placeholder="Enter stones" id="stones" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">st</div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid right labeled input">
+                            <label for="slugs" class="ui basic label">Slugs</label>
+                            <input type="number" placeholder="Enter slugs" id="slugs" min="0" oninput="weightConverter(this.value,this.id)" onchange="weightConverter(this.value,this.id)">
+                            <div class="ui basic label">sl</div>
+                        </div>
+                    </div>
+                    <div class="ui secondary segment">
+                        <p><i class="book icon"></i>If you want to know the standart of converting functions, just read the <a href="https://en.m.wikipedia.org/wiki/Units_of_measurement#Calculations_with_units_of_measurement">documentation</a>.</p>
+                    </div>
+                </div>
+                <!-- Special toggleable window -->
+            </div>
+            <div class="six wide column">
+                <div class="ui segment" id="calc">
+                    Calculator Window
+                </div>
+            </div>
+            <div class="sixteen wide column">
+                <div class="ui horizontal divider" id="footer-section">Copyright © Vladimir Pavlov 2017 year</div>
+            </div>
+        </div>
+        <!-- Embed external own files -->
+        <script src="lib/index.js"></script>
+    </body>
+</html>

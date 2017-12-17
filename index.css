@@ -1,0 +1,23 @@
+#calc {
+  height: 77vh; }
+
+#main-header {
+  text-align: center;
+  background-color: #00cc99;
+  color: #ffffff; }
+
+#footer-section {
+  text-align: center;
+  font-weight: 300;
+  text-transform: none; }
+
+.ui.label {
+  width: 100px;
+  text-align: center;
+  font-weight: 400; }
+
+.ui[class*="right labeled"].input input + .label {
+  width: 60px;
+  font-weight: 400; }
+
+/*# sourceMappingURL=index.css.map */
