@@ -25,6 +25,18 @@
     font-weight: 400;
 }
 
-#calc {
-    position: fixed;
+
+//Media quaries for smartphones:
+@media (max-width: 575px){
+    
+}
+//Media quaries for tablets and medium devices:
+@media (min-width: 576px) and (max-width: 991px){
+    
+}
+//Media quaries for desktops:
+@media (min-width: 992px) and (min-width: 1200px){
+    #calc {
+        position: fixed;
+    }
 }
