@@ -278,14 +278,13 @@ function numForm(){
     tempArray.length = 12;
     
     for(var i=0;i<arr.length;i++){
-        tempArray[i] = createContainer(arr[i]);
-        console.log(tempArray[i]);
+        tempArray[i] = createContainer(arr[i],'NS');
     }
     return tempArray;
 }
 
 //General function for creation a form object:
-function createContainer(checkID){
+function createContainer(checkID,NS){
     //Intialize info for pounds:
     var container = document.createElement("div"),
     fluid_cont = document.createElement("div"),
@@ -296,7 +295,11 @@ function createContainer(checkID){
     container.setAttribute("class","ui segment");
     fluid_cont.setAttribute("class","ui fluid right labeled input");
     label_cont.setAttribute("class","ui basic label");
-    input_cont.setAttribute("type","number");
+    if(NS !== 'NS'){
+        input_cont.setAttribute("type","number");
+    } else {
+        input_cont.setAttribute("type","text");
+    }
     input_cont.setAttribute("min",0);
     basic_label.setAttribute("class","ui basic label");
     //Set additional attributes depending from checkID:
@@ -709,7 +712,6 @@ function createContainer(checkID){
         basic_label.innerHTML = "10<sup>-24</sup>";
     } else if(checkID === 'binary'){
         checkIDCreate(label_cont,input_cont,basic_label,'binary','Binary',2);
-        console.log(checkIDCreate(label_cont,input_cont,basic_label,'binary','Binary',2));
     } else if(checkID === 'ternary'){
         checkIDCreate(label_cont,input_cont,basic_label,'ternary','Ternary',3);
     } else if(checkID === 'quaternary'){
@@ -1103,7 +1105,6 @@ function tempConverter(val,idTag){
         },
         
         reaumurConverter : function(Re){
-            console.log("Function was called!");
             if(Re !== ""){
                 this.C.value = this.roundNumber(Re*(5/4));
                 this.F.value = this.roundNumber(Re*(9/4)+32);
@@ -1609,32 +1610,124 @@ function nsConverter(val,idTag){
             [12,'duodenary'],
             [16,'hexadecimal']
             ],
+            
+        arrCont : [],    
+        
         outValue : function(){
-            var array = [];
-            array.length = 11;
-            
-            for(var i=0;i<array.length;i++){
-                array[i] = document.getElementById(this.radix[i][1]);
-                console.log(array[i]);
+            for(var i=0;i<12;i++){
+                this.arrCont[i] = document.getElementById(this.radix[i][1]);
             }
-            
-            return array;
         },
         
         spreader : function(Tag){
+            var finVal = '';
+            finVal = this.assembler(Tag);
             switch(Tag){
                 case 'binary':
-                    this.universal(val,this.radix[0][0],this.radix);
+                    this.universal(finVal,this.radix[0][0],this.radix);
+                    break;
+                case 'ternary':
+                    this.universal(finVal,this.radix[1][0],this.radix);
+                    break;
+                case 'quaternary':
+                    this.universal(finVal,this.radix[2][0],this.radix);
+                    break;
+                case 'quinary':
+                    this.universal(finVal,this.radix[3][0],this.radix);
+                    break;
+                case 'senary':
+                    this.universal(finVal,this.radix[4][0],this.radix);
+                    break;
+                case 'septenary':
+                    this.universal(finVal,this.radix[5][0],this.radix);
+                    break;
+                case 'octonary':
+                    this.universal(finVal,this.radix[6][0],this.radix);
+                    break;
+                case 'nonary':
+                    this.universal(finVal,this.radix[7][0],this.radix);
+                    break;
+                case 'decimal':
+                    this.universal(finVal,this.radix[8][0],this.radix);
+                    break;
+                case 'undenary':
+                    this.universal(finVal,this.radix[9][0],this.radix);
+                    break;
+                case 'duodenary':
+                    this.universal(finVal,this.radix[10][0],this.radix);
+                    break;
+                case 'hexadecimal':
+                    this.universal(finVal,this.radix[11][0],this.radix);
                     break;
             }
         },
         
+        assembler : function(checkTag){
+            var pattern, trVal, finNum = '';
+            switch(checkTag){
+                case 'binary':
+                    pattern = /[0-1]/gi;
+                    break;
+                case 'ternary':
+                    pattern = /[0-2]/gi;
+                    break;
+                case 'quaternary':
+                    pattern = /[0-3]/gi;
+                    break;
+                case 'quinary':
+                    pattern = /[0-4]/gi;
+                    break;
+                case 'senary':
+                    pattern = /[0-5]/gi;
+                    break;
+                case 'septenary':
+                    pattern = /[0-6]/gi;
+                    break;
+                case 'octonary':
+                    pattern = /[0-7]/gi;
+                    break;
+                case 'nonary':
+                    pattern = /[0-8]/gi;
+                    break;
+                case 'decimal':
+                    pattern = /[0-9]/gi;
+                    break;
+                case 'undenary':
+                    pattern = /[0-9]|[a]/gi;
+                    break;
+                case 'duodenary':
+                    pattern = /[0-9]|[a-b]/gi;
+                    break;
+                case 'hexadecimal':
+                    pattern = /[0-9]|[a-f]/gi;
+                    break;
+            }
+            console.log('Pattern = ' + pattern);
+            trVal = val.match(pattern);
+            console.log('Result = ' + trVal);
+            if(trVal !== null){
+                for(var i=0;i<trVal.length;i++){
+                    finNum += trVal[i];
+                    console.log('Assembler variable = ' + finNum);
+                }
+            } else {
+                finNum = '';
+            }
+            return finNum;
+        },
+        
         universal : function(num,radIn,radTo){
-            for(var i=0;i<this.outValue.length;i++){
-                this.outValue[i] = parseInt(num,radIn).toString(radTo[i][0]);
+            var converted;
+            for(var i=0;i<12;i++){
+                if(num !== ''){
+                   converted = parseInt(num,radIn).toString(radTo[i][0]); 
+                } else {
+                    converted = '';
+                }
+                this.arrCont[i].value = converted.toUpperCase();
             }
         }
     }
+    converterApp.outValue();
     converterApp.spreader(idTag);
-    console.log(converterApp.spreader(idTag));
 }
