@@ -1731,3 +1731,231 @@ function nsConverter(val,idTag){
     converterApp.outValue();
     converterApp.spreader(idTag);
 }
+
+//Popup for scientific calculator info-block:
+$('.ui.teal.right.corner.label')
+    .popup({
+        position : 'left center',
+        target : '.ui.segments.calc',
+        title : 'Calculator info',
+        content : 'You can use this calculator for interaction with different physical, mathematical and computational measurements.'
+    });
+    
+//Popup for scientific calculator info-block (mobile):
+$('.help.circle.outline.mobile').popup({
+    position : 'left center',
+    target : '.help.circle.outline.mobile',
+    title : 'Calculator info',
+    content : 'You can use this calculator for interaction with different physical, mathematical and computational measurements.',
+    on : 'click'
+});
+
+//Initialize dropdown menu:
+$('.ui.basic.floating.dropdown.button').dropdown();
+
+//Toomler function for mathematical menu:
+document.getElementsByClassName("item mathMenu")[0].addEventListener("click",function(){
+    mathToomler('math-1');
+});
+document.getElementsByClassName("item mathMenu")[1].addEventListener("click",function(){
+    mathToomler('math-2');
+});
+document.getElementsByClassName("item mathMenu")[2].addEventListener("click",function(){
+    mathToomler('trig-1');
+});
+document.getElementsByClassName("item mathMenu")[3].addEventListener("click",function(){
+    mathToomler('trig-2');
+});
+
+var numBtn = 0,
+btn = document.getElementsByClassName("item mathMenu"),
+oldMathSegment = document.getElementsByClassName("ui segment math-block"),
+genMathBlock = document.getElementsByClassName("ui segments calc"),
+newMathReplaced;
+function mathToomler(checkVar){
+    console.log(btn);
+    console.log(prevBtn);
+    btn[numBtn].setAttribute("class","item mathMenu");
+    switch(checkVar){
+        case 'math-1':
+            btn[0].setAttribute("class","item mathMenu active");
+            numBtn = 0;
+            console.log("New replaced segment: " + newMathReplaced);
+            break;
+        case 'math-2':
+            btn[1].setAttribute("class","item mathMenu active");
+            numBtn = 1;
+            break;
+        case 'trig-1':
+            btn[2].setAttribute("class","item mathMenu active");
+            numBtn = 2;
+            break;
+        case 'trig-2':
+            btn[3].setAttribute("class","item mathMenu active");
+            numBtn = 3;
+            break;
+    }
+    newMathReplaced = otherMathBtn(checkVar);
+    genMathBlock[0].replaceChild(newMathReplaced,oldMathSegment[0]);
+}
+
+//Function for creation another button:
+function otherMathBtn(btnCheck){
+    var extContainer = document.createElement("div"),
+    vertCont, visibleCont, hiddenCont, supCont,
+    contArray = [];
+    contArray.length = 5;
+    extContainer.setAttribute("class","ui segment math-block");
+    
+    for(var i=0;i<contArray.length;i++){
+        vertCont = document.createElement("div");
+        visibleCont = document.createElement("div");
+        hiddenCont = document.createElement("div");
+        supCont = document.createElement("sup");
+        supContV = document.createElement("sup");
+        
+        vertCont.setAttribute("class","ui vertical animated basic teal button include");
+        visibleCont.setAttribute("class","visible content");
+        hiddenCont.setAttribute("class","hidden content");
+        vertCont.appendChild(visibleCont);
+        vertCont.appendChild(hiddenCont);
+        
+        if(btnCheck === 'math-1'){
+            switch(i){
+                case 0:
+                    supCont.innerHTML = "y";
+                    supContV.innerHTML = "y";
+                    visibleCont.innerHTML = "x";
+                    hiddenCont.innerHTML = "x";
+                    visibleCont.appendChild(supCont);
+                    hiddenCont.appendChild(supContV);
+                    vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    break;
+                case 1:
+                    supCont.innerHTML = "3";
+                    supContV.innerHTML = "3";
+                    visibleCont.innerHTML = "x";
+                    hiddenCont.innerHTML = "x"
+                    visibleCont.appendChild(supCont);
+                    hiddenCont.appendChild(supContV);
+                    break;
+                case 2:
+                    visibleCont.innerHTML = "1/x";
+                    hiddenCont.innerHTML = "1/x";
+                    break;
+                case 3:
+                    supCont.innerHTML = "x";
+                    supContV.innerHTML = "x";
+                    visibleCont.innerHTML = "10";
+                    hiddenCont.innerHTML = "10"
+                    visibleCont.appendChild(supCont);
+                    hiddenCont.appendChild(supContV);
+                    break;
+                case 4:
+                    visibleCont.innerHTML = "e";
+                    hiddenCont.innerHTML = "e";
+                    break;
+            }
+        } else if(btnCheck === 'math-2'){
+            switch(i){
+                case 0:
+                    supCont.innerHTML = "x";
+                    supContV.innerHTML = "x";
+                    visibleCont.innerHTML = "e";
+                    hiddenCont.innerHTML = "e";
+                    visibleCont.appendChild(supCont);
+                    hiddenCont.appendChild(supContV);
+                    vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    break;
+                case 1:
+                    visibleCont.innerHTML = "ln";
+                    hiddenCont.innerHTML = "ln";
+                    break;
+                case 2:
+                    visibleCont.innerHTML = "log";
+                    hiddenCont.innerHTML = "log";
+                    break;
+                case 3:
+                    visibleCont.innerHTML = "π";
+                    hiddenCont.innerHTML = "π";
+                    break;
+                case 4:
+                    visibleCont.innerHTML = "n!";
+                    hiddenCont.innerHTML = "n!";
+                    break;
+            }
+        } else if(btnCheck === 'trig-1'){
+            switch(i){
+                case 0:
+                    visibleCont.innerHTML = "sin";
+                    hiddenCont.innerHTML = "sin";
+                    vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    break;
+                case 1:
+                    visibleCont.innerHTML = "cos";
+                    hiddenCont.innerHTML = "cos";
+                    break;
+                case 2:
+                    visibleCont.innerHTML = "tg";
+                    hiddenCont.innerHTML = "tg";
+                    break;
+                case 3:
+                    visibleCont.innerHTML = "arcsin";
+                    hiddenCont.innerHTML = "arcsin";
+                    break;
+                case 4:
+                    visibleCont.innerHTML = "arccos";
+                    hiddenCont.innerHTML = "arccos";
+                    break;
+            }
+        } else if(btnCheck === "trig-2"){
+            switch(i){
+                case 0:
+                    visibleCont.innerHTML = "arctg";
+                    hiddenCont.innerHTML = "arctg";
+                    vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    break;
+                case 1:
+                    visibleCont.innerHTML = "hsin";
+                    hiddenCont.innerHTML = "hsin";
+                    break;
+                case 2:
+                    visibleCont.innerHTML = "hcos";
+                    hiddenCont.innerHTML = "hcos";
+                    break;
+                case 3:
+                    visibleCont.innerHTML = "htg";
+                    hiddenCont.innerHTML = "htg";
+                    break;
+                case 4:
+            }
+        }
+        contArray[i] = vertCont;
+        extContainer.appendChild(contArray[i]);
+    }
+    if(btnCheck === 'trig-2'){
+        extContainer.removeChild(vertCont);
+    }
+    return extContainer;
+}
+
+//Block for calculator implementation:
+var cache = document.getElementById("cache-output"),
+result = '',
+hurdle = true;
+
+function calculatorFunc(val,act){
+    if(act === 'value'){
+        result += val;
+    } else if(act === 'reset'){
+        result = '';
+        hurdle = true;
+    } else if(act === 'decimal' && hurdle !== false){
+        result += val;
+        hurdle = false;
+    } else if(act === 'plus'){
+        result = parseInt(cache.value);
+    }
+    console.log('Hurdle: ' + hurdle);
+    cache.value = result.toString();
+}
