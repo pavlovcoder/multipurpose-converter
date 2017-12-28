@@ -1941,21 +1941,128 @@ function otherMathBtn(btnCheck){
 
 //Block for calculator implementation:
 var cache = document.getElementById("cache-output"),
-result = '',
-hurdle = true;
+inputField = document.getElementsByClassName("ui right action left input fluid"),
+result = 0,
+hurdle = true,
+minToomler = false,
+cacheTr,
+n;
 
 function calculatorFunc(val,act){
     if(act === 'value'){
-        result += val;
+        cache.value += val.toString();
+        changeInputColor('default');
     } else if(act === 'reset'){
-        result = '';
+        result = 0;
+        cache.value = '';
         hurdle = true;
+        minToomler = false;
+        cache.setAttribute("placeholder","Start calculating");
+        changeInputColor('default');
     } else if(act === 'decimal' && hurdle !== false){
-        result += val;
+        cache.value += val.toString();
         hurdle = false;
+        changeInputColor('default');
     } else if(act === 'plus'){
-        result = parseInt(cache.value);
+        result += parseFloat(cache.value);
+        cache.setAttribute("placeholder",result);
+        cache.value = '';
+        hurdle = true;
+    } else if(act === 'minus'){
+        if(minToomler !== false){
+            result -= parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+            minToomler = true;
+        }
+        hurdle = true;
+    } else if (act === 'multiply'){
+        if(minToomler !== false){
+            result *= parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+            minToomler = true;
+        }
+    } else if(act === 'divide'){
+        if(minToomler !== false){
+            result /= parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+            minToomler = true;
+        }
+    } else if(act === 'equal'){
+        cache.value = result.toString();
+        result = 0;
+        minToomler = false;
+    } else if(act === 'sqrt'){
+        cacheTr = parseFloat(cache.value);
+        result = Math.sqrt(cacheTr);
+        cache.value = result;
+    } else if(act === 'x^2'){
+        cacheTr = parseFloat(cache.value);
+        result = Math.pow(cacheTr,2);
+        cache.value = result;
+    } else if(act === '+/-'){
+        if(cache.value === ''){
+            cache.value = NaN;
+        } else if(cache.value.startsWith('-') === true){
+            cacheTr = cache.value.slice(1);
+            cache.value = cacheTr;
+        } else if(cache.value.startsWith('-') === false){
+            cacheTr = '-'.concat(cache.value);
+            cache.value = cacheTr;
+        }
+        result = cache.value;
+    } else if(act === 'ythsqrt'){
+        if(minToomler !== false){
+            n = 1/parseFloat(cache.value);
+            cacheTr = Math.pow(result,n);
+            console.log("Result of nth root = " + cacheTr);
+            result = cacheTr;
+            cache.value = result;
+            cache.setAttribute("placeholder",result);
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder","(n)√" + result + " - " + "provide n-th of root...");
+            cache.value = '';
+            minToomler = true;
+            //I will continue from this place.... I'll fixing function calculation n-th root of value at 29.12.2017...
+        }
     }
-    console.log('Hurdle: ' + hurdle);
-    cache.value = result.toString();
+    console.log("Result value: " + result.toString() + "\n");
+    console.log("Cache value: " + cache.value.toString() + "\n");
+    checkNaN(result);
+}
+
+function changeInputColor(change){
+    var field = document.getElementsByClassName("ui right action left input fluid"),
+    cache = document.getElementById("cache-output");
+    switch(change){
+        case 'default':
+            field[0].setAttribute("class","ui right action left input fluid");
+            break;
+        case 'error':
+            field[0].setAttribute("class","ui right action left input fluid error");
+            cache.value = "Error! Please, try again.";
+            break;
+    }
+}
+
+function checkNaN(res){
+    var field = document.getElementsByClassName("ui right action left input fluid");
+    if(isNaN(res) == true){
+        changeInputColor('error');
+    }
 }
