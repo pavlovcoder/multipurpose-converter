@@ -1702,13 +1702,10 @@ function nsConverter(val,idTag){
                     pattern = /[0-9]|[a-f]/gi;
                     break;
             }
-            console.log('Pattern = ' + pattern);
             trVal = val.match(pattern);
-            console.log('Result = ' + trVal);
             if(trVal !== null){
                 for(var i=0;i<trVal.length;i++){
                     finNum += trVal[i];
-                    console.log('Assembler variable = ' + finNum);
                 }
             } else {
                 finNum = '';
@@ -1773,14 +1770,11 @@ oldMathSegment = document.getElementsByClassName("ui segment math-block"),
 genMathBlock = document.getElementsByClassName("ui segments calc"),
 newMathReplaced;
 function mathToomler(checkVar){
-    console.log(btn);
-    console.log(prevBtn);
     btn[numBtn].setAttribute("class","item mathMenu");
     switch(checkVar){
         case 'math-1':
             btn[0].setAttribute("class","item mathMenu active");
             numBtn = 0;
-            console.log("New replaced segment: " + newMathReplaced);
             break;
         case 'math-2':
             btn[1].setAttribute("class","item mathMenu active");
@@ -1830,6 +1824,7 @@ function otherMathBtn(btnCheck){
                     visibleCont.appendChild(supCont);
                     hiddenCont.appendChild(supContV);
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'x^y')");
                     break;
                 case 1:
                     supCont.innerHTML = "3";
@@ -1838,10 +1833,12 @@ function otherMathBtn(btnCheck){
                     hiddenCont.innerHTML = "x"
                     visibleCont.appendChild(supCont);
                     hiddenCont.appendChild(supContV);
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'x^3')");
                     break;
                 case 2:
                     visibleCont.innerHTML = "1/x";
                     hiddenCont.innerHTML = "1/x";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'1/x')");
                     break;
                 case 3:
                     supCont.innerHTML = "x";
@@ -1850,10 +1847,12 @@ function otherMathBtn(btnCheck){
                     hiddenCont.innerHTML = "10"
                     visibleCont.appendChild(supCont);
                     hiddenCont.appendChild(supContV);
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'10^x')");
                     break;
                 case 4:
                     visibleCont.innerHTML = "e";
                     hiddenCont.innerHTML = "e";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'euler')");
                     break;
             }
         } else if(btnCheck === 'math-2'){
@@ -1866,22 +1865,27 @@ function otherMathBtn(btnCheck){
                     visibleCont.appendChild(supCont);
                     hiddenCont.appendChild(supContV);
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'y=e^x')");
                     break;
                 case 1:
                     visibleCont.innerHTML = "ln";
                     hiddenCont.innerHTML = "ln";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'ln')");
                     break;
                 case 2:
                     visibleCont.innerHTML = "log";
                     hiddenCont.innerHTML = "log";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'log')");
                     break;
                 case 3:
                     visibleCont.innerHTML = "π";
                     hiddenCont.innerHTML = "π";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'pi')");
                     break;
                 case 4:
                     visibleCont.innerHTML = "n!";
                     hiddenCont.innerHTML = "n!";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'factorial')")
                     break;
             }
         } else if(btnCheck === 'trig-1'){
@@ -1890,22 +1894,27 @@ function otherMathBtn(btnCheck){
                     visibleCont.innerHTML = "sin";
                     hiddenCont.innerHTML = "sin";
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'sin')");
                     break;
                 case 1:
                     visibleCont.innerHTML = "cos";
                     hiddenCont.innerHTML = "cos";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'cos')");
                     break;
                 case 2:
                     visibleCont.innerHTML = "tg";
                     hiddenCont.innerHTML = "tg";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'tg')");
                     break;
                 case 3:
                     visibleCont.innerHTML = "arcsin";
                     hiddenCont.innerHTML = "arcsin";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'arcsin')");
                     break;
                 case 4:
                     visibleCont.innerHTML = "arccos";
                     hiddenCont.innerHTML = "arccos";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'arccos')");
                     break;
             }
         } else if(btnCheck === "trig-2"){
@@ -1914,18 +1923,22 @@ function otherMathBtn(btnCheck){
                     visibleCont.innerHTML = "arctg";
                     hiddenCont.innerHTML = "arctg";
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'arctg')");
                     break;
                 case 1:
                     visibleCont.innerHTML = "hsin";
                     hiddenCont.innerHTML = "hsin";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'hsin')");
                     break;
                 case 2:
                     visibleCont.innerHTML = "hcos";
                     hiddenCont.innerHTML = "hcos";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'hcos')");
                     break;
                 case 3:
                     visibleCont.innerHTML = "htg";
                     hiddenCont.innerHTML = "htg";
+                    vertCont.setAttribute("onclick","calculatorFunc(null,'htg')");
                     break;
                 case 4:
             }
@@ -1946,7 +1959,11 @@ result = 0,
 hurdle = true,
 minToomler = false,
 cacheTr,
-n;
+n,
+cacheCtn = document.getElementsByClassName("ui segment calc"),
+mainCtn = document.getElementsByClassName("ui segments calc"),
+Euler = Math.E,
+angleUnit = 'rad';
 
 function calculatorFunc(val,act){
     if(act === 'value'){
@@ -1964,9 +1981,16 @@ function calculatorFunc(val,act){
         hurdle = false;
         changeInputColor('default');
     } else if(act === 'plus'){
-        result += parseFloat(cache.value);
-        cache.setAttribute("placeholder",result);
-        cache.value = '';
+        if(minToomler !== false){
+            result += parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder",result);
+            cache.value = '';
+            minToomler = true;
+        }
         hurdle = true;
     } else if(act === 'minus'){
         if(minToomler !== false){
@@ -2029,21 +2053,109 @@ function calculatorFunc(val,act){
         if(minToomler !== false){
             n = 1/parseFloat(cache.value);
             cacheTr = Math.pow(result,n);
-            console.log("Result of nth root = " + cacheTr);
             result = cacheTr;
-            cache.value = result;
+            cache.value = '';
             cache.setAttribute("placeholder",result);
         } else {
             result = parseFloat(cache.value);
             cache.setAttribute("placeholder","(n)√" + result + " - " + "provide n-th of root...");
             cache.value = '';
             minToomler = true;
-            //I will continue from this place.... I'll fixing function calculation n-th root of value at 29.12.2017...
+        }
+    } else if(act === 'x^y'){
+        if(minToomler !== false){
+            n = parseFloat(cache.value);
+            cacheTr = Math.pow(result,n);
+            result = cacheTr;
+            cache.value = '';
+            cache.setAttribute("placeholder",result);
+        } else {
+            result = parseFloat(cache.value);
+            cache.setAttribute("placeholder",result + "^(n) - provide n-th of power...");
+            cache.value = '';
+            minToomler = true;
+        }
+    } else if(act === 'x^3'){
+        cacheTr = parseFloat(cache.value);
+        result = Math.pow(cacheTr,3);
+        cache.value = result;
+    } else if(act === '1/x'){
+        cacheTr = parseFloat(cache.value);
+        result = 1/cacheTr;
+        cache.value = result;
+    } else if(act === '10^x'){
+        n = parseFloat(cache.value);
+        result = Math.pow(10,n);
+        cache.value = result;
+    } else if(act === 'euler'){
+        cache.value = Euler.toString();
+    } else if(act === 'y=e^x'){
+        n = parseFloat(cache.value);
+        result = Math.exp(n);
+        cache.value = result;
+    } else if(act === 'ln'){
+        cacheTr = parseFloat(cache.value);
+        result = Math.log(cacheTr);
+        cache.value = result;
+    } else if(act === 'log'){
+        cacheTr = parseFloat(cache.value);
+        result = Math.log(cacheTr)/Math.log(10);
+        cache.value = result;
+    } else if(act === 'pi'){
+        cacheTr = Math.PI;
+        cache.value = cacheTr.toString();
+    } else if(act === 'factorial'){
+        result = factorial(cache.value);
+        cache.value = result;
+    } else if(act === 'sin'){
+        cacheTr = (angleUnit !== 'rad') ? toRadians(parseFloat(cache.value)) : parseFloat(cache.value);
+        result = roundTrigNumber(Math.sin(cacheTr));
+        cache.value = result;
+    } else if(act === 'cos'){
+        cacheTr = (angleUnit !== 'rad') ? toRadians(parseFloat(cache.value)) : parseFloat(cache.value);
+        result = roundTrigNumber(Math.cos(cacheTr));
+        cache.value = result;
+    } else if(act === 'tg'){
+        cacheTr = (angleUnit !== 'rad') ? toRadians(parseFloat(cache.value)) : parseFloat(cache.value);
+        result = roundTrigNumber(Math.tan(cacheTr));
+        cache.value = result;
+    } else if(act === 'arcsin'){
+        cacheTr = parseFloat(cache.value);
+        result = (angleUnit !== 'rad') ? toDegree(Math.asin(cacheTr)) : Math.asin(cacheTr);
+        cache.value = result;
+    } else if(act === 'arccos'){
+        cacheTr = parseFloat(cache.value);
+        result = (angleUnit !== 'rad') ? toDegree(Math.acos(cacheTr)) : Math.acos(cacheTr);
+        cache.value = result;
+    } else if(act === 'arctg'){
+        cacheTr = parseFloat(cache.value);
+        result = (angleUnit !== 'rad') ? toDegree(Math.atan(cacheTr)) : Math.atan(cacheTr);
+        cache.value = result;
+    } else if(act === 'hsin'){
+        cacheTr = parseFloat(cache.value);
+        result = roundTrigNumber(hyperbolicFunc('hsin',cacheTr));
+        cache.value = result;
+    } else if(act === 'hcos'){
+        cacheTr = parseFloat(cache.value);
+        result = roundTrigNumber(hyperbolicFunc('hcos',cacheTr));
+        cache.value = result;
+    } else if(act === 'htg'){
+        cacheTr = parseFloat(cache.value);
+        result = roundTrigNumber(hyperbolicFunc('htg',cacheTr));
+        cache.value = result;
+    } else if(act === '<'){
+        cacheTr = cache.value.slice(0,-1);
+        cache.value = cacheTr;
+        result = cache.value;
+        if(cache.value == ''){
+            result = 0;
+            hurdle = true;
+            minToomler = false;
+            cache.setAttribute("placeholder","Start calculating");
         }
     }
-    console.log("Result value: " + result.toString() + "\n");
-    console.log("Cache value: " + cache.value.toString() + "\n");
     checkNaN(result);
+    checkSpecialCharacter(result);
 }
 
 function changeInputColor(change){
@@ -2064,5 +2176,129 @@ function checkNaN(res){
     var field = document.getElementsByClassName("ui right action left input fluid");
     if(isNaN(res) == true){
         changeInputColor('error');
+    }
+}
+
+function checkSpecialCharacter(res){
+    var cache = document.getElementById("cache-output");
+    switch(res){
+        case Infinity:
+            cache.value = '∞';
+            break;
+        case -Infinity:
+            cache.value = '-∞';
+            break;
+    }
+}
+
+function factorial(x){
+    if(x !== ''){
+        x = parseInt(x,10);
+        var n = 1;
+        if(x<0 || x>50){
+            n = NaN;
+        } else if(x == 0){
+            n = 1;
+        } else if(x>=1){
+            for(var i=1;i<=x;i++){
+                n*=i;
+            }
+        }
+    } else {
+        n = NaN;
+    }
+    return n;
+}
+
+function hyperbolicFunc(func,x){
+    var y;
+    switch(func){
+        case 'hsin':
+           y = ((Math.pow(Math.E,x))-(Math.pow(Math.E,-x)))/2;
+           break;
+        case 'hcos':
+           y = ((Math.pow(Math.E,x))+(Math.pow(Math.E,-x)))/2;
+           break;
+        case 'htg':
+           y = ((Math.pow(Math.E,x))-(Math.pow(Math.E,-x)))/((Math.pow(Math.E,x))+(Math.pow(Math.E,-x)));
+           break;
+    }
+    return y;
+}
+
+function toRadians(x){
+    return x*(Math.PI/180);
+}
+
+function toDegree(x){
+    return x*(180/Math.PI);
+}
+
+function changeAngleUnit(unitType){
+    angleUnit = unitType;
+}
+
+function roundTrigNumber(x){
+    return Math.round(x*Math.pow(10,5))/Math.pow(10,5);
+}
+
+document.getElementsByClassName("ui vertical animated basic teal button")[3].addEventListener("click",function(){
+    cacheElement('reset');
+});
+
+var tCache = true,
+cacheValue,
+segCache = document.createElement("div"),
+iconMessage = document.createElement("div"),
+contentCtn = document.createElement("div"),
+loaderIcon = document.createElement("i"),
+headerCtn = document.createElement("div"),
+detail = document.createElement("p"),
+btnCacheCreate = document.getElementsByClassName("ui vertical animated basic teal button");
+        
+function cacheElement(attr){
+    switch(attr){
+        case 'create':
+            if(isNaN(parseFloat(cache.value)) !== true){
+                var beforeCtn = document.getElementById("uiBefore");
+                if(tCache === true){
+                segCache.setAttribute("class","ui segment cache");
+                iconMessage.setAttribute("class","ui teal icon tiny message");
+                loaderIcon.setAttribute("class","notched circle loading icon");
+                contentCtn.setAttribute("class","content");
+                headerCtn.setAttribute("class","header");
+                detail.setAttribute("class","detail");
+                
+                segCache.appendChild(iconMessage);
+                iconMessage.appendChild(loaderIcon);
+                iconMessage.appendChild(contentCtn);
+                contentCtn.appendChild(headerCtn);
+                contentCtn.appendChild(detail);
+                
+                headerCtn.innerHTML = "Memory";
+                
+                mainCtn[0].insertBefore(segCache,beforeCtn);
+                cacheValue = parseFloat(cache.value);
+                tCache = false;
+                } else {
+                    cacheValue += parseFloat(cache.value);
+                }
+                detail.innerHTML = cacheValue.toString();  
+            }
+            break;
+        case 'reset':
+            mainCtn[0].removeChild(segCache);
+            cacheValue = '';
+            tCache = true;
+            break;
+        case 'minus':
+            if(cacheValue !== ''){
+                cacheValue -= parseFloat(cache.value);
+            }
+            detail.innerHTML = cacheValue.toString();
+            break;
+        case 'memory_recall':
+            cache.value = cacheValue.toString();
+            break;
     }
 }
