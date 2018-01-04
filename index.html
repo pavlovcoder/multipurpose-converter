@@ -112,56 +112,52 @@
                         <div class="ui right action left input fluid">
                             <input type="text" placeholder="Start calculating" id="cache-output" readonly>
                             <div class="ui basic floating dropdown button">
-                                <div class="text">GRAD</div>
+                                <div class="text">RAD</div>
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <div class="item">GRAD</div>
-                                    <div class="item">RAD</div>
-                                    <div class="item">DEG</div>
+                                    <div class="item" onclick="changeAngleUnit('rad')">RAD</div>
+                                    <div class="item" onclick="changeAngleUnit('degree')">DEG</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="ui segment">
-                        <div class="ui vertical animated basic teal button" tabindex="0">
+                        <div class="ui teal icon message tiny">
+                            <i class="notched circle loading icon"></i>
+                            <div class="content">
+                                <div class="header">
+                                Memory:
+                                </div>
+                                <p class="detail">86378.4200</p>
+                            </div>
+                            <div class="ui mini vertical animated teal button trash">
+                                <div class="hidden content">
+                                    <i class="trash icon"></i>Clear
+                                </div>
+                                <div class="visible content">
+                                    <i class="trash icon"></i>Clear
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment" id="uiBefore">
+                        <div class="ui vertical animated basic teal button" onclick="cacheElement('create')">
                             <div class="visible content">M+</div>
                             <div class="hidden content">M+</div>
                         </div>
-                        <div class="ui vertical animated basic teal button" tabindex="0">
+                        <div class="ui vertical animated basic teal button" onclick="cacheElement('minus')">
                             <div class="visible content">M-</div>
                             <div class="hidden content">M-</div>
                         </div>
-                        <div class="ui vertical animated basic teal button" tabindex="0">
-                            <div class="visible content">MS</div>
-                            <div class="hidden content">MS</div>
-                        </div>
-                        <div class="ui vertical animated basic teal button" tabindex="0">
-                            <div class="visible content">MC</div>
-                            <div class="hidden content">MC</div>
-                        </div>
-                        <div class="ui vertical animated basic teal button" tabindex="0">
+                        <div class="ui vertical animated basic teal button" onclick="cacheElement('memory_recall')">
                             <div class="visible content">MR</div>
                             <div class="hidden content">MR</div>
                         </div>
-                    </div>
-                    <div class="ui segment">
-                        <div class="ui vertical animated basic teal button">
-                            <div class="visible content">(</div>
-                            <div class="hidden content">(</div>
-                        </div>
-                        <div class="ui vertical animated basic teal button">
-                            <div class="visible content">)</div>
-                            <div class="hidden content">)</div>
-                        </div>
-                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'reset')">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'reset')" onclick="cacheElement('reset')">
                             <div class="visible content">C</div>
                             <div class="hidden content">C</div>
                         </div>
-                        <div class="ui vertical animated basic teal button">
-                            <div class="visible content">CE</div>
-                            <div class="hidden content">CE</div>
-                        </div>
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'<')">
                             <div class="visible content"><i class="angle left icon"></i></div>
                             <div class="hidden content"><i class="angle left icon"></i></div>
                         </div>
@@ -255,23 +251,23 @@
                         </div>
                     </div>
                     <div class="ui segment math-block">
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'x^y')">
                             <div class="visible content">x<sup>y</sup></div>
                             <div class="hidden content">x<sup>y</sup></div>
                         </div>
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'x^3')">
                             <div class="visible content">x<sup>3</sup></div>
                             <div class="hidden content">x<sup>3</sup></div>
                         </div>
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'1/x')">
                             <div class="visible content">1/x</div>
                             <div class="hidden content">1/x</div>
                         </div>
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'10^x')">
                             <div class="visible content">10<sup>x</sup></div>
                             <div class="hidden content">10<sup>x</sup></div>
                         </div>
-                        <div class="ui vertical animated basic teal button">
+                        <div class="ui vertical animated basic teal button" onclick="calculatorFunc(null,'euler')">
                             <div class="visible content">e</div>
                             <div class="hidden content">e</div>
                         </div>
