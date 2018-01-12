@@ -2242,9 +2242,9 @@ function roundTrigNumber(x){
     return Math.round(x*Math.pow(10,5))/Math.pow(10,5);
 }
 
-document.getElementsByClassName("ui vertical animated basic teal button")[3].addEventListener("click",function(){
+/*document.getElementsByClassName("ui vertical animated basic teal button")[3].addEventListener("click",function(){
     cacheElement('reset');
-});
+});*/
 
 var tCache = true,
 cacheValue,
@@ -2254,8 +2254,14 @@ contentCtn = document.createElement("div"),
 loaderIcon = document.createElement("i"),
 headerCtn = document.createElement("div"),
 detail = document.createElement("p"),
-btnCacheCreate = document.getElementsByClassName("ui vertical animated basic teal button");
-        
+btnCacheCreate = document.getElementsByClassName("ui vertical animated basic teal button"),
+miniAnimBtn = document.createElement("div"),
+hiddenContent = document.createElement("div"),
+visibleContent = document.createElement("div"),
+trashIcon1 = document.createElement("i"),
+trashIcon2 = document.createElement("i"),
+clearCtn1 = document.createTextNode('Clear'),
+clearCtn2 = document.createTextNode('Clear');
 function cacheElement(attr){
     switch(attr){
         case 'create':
@@ -2268,12 +2274,25 @@ function cacheElement(attr){
                 contentCtn.setAttribute("class","content");
                 headerCtn.setAttribute("class","header");
                 detail.setAttribute("class","detail");
+                miniAnimBtn.setAttribute("class","ui mini vertical animated teal button trash");
+                miniAnimBtn.setAttribute("onclick","cacheElement('reset')");
+                hiddenContent.setAttribute("class","hidden content");
+                visibleContent.setAttribute("class","visible content");
+                trashIcon1.setAttribute("class","trash icon");
+                trashIcon2.setAttribute("class","trash icon");
                 
                 segCache.appendChild(iconMessage);
                 iconMessage.appendChild(loaderIcon);
                 iconMessage.appendChild(contentCtn);
+                iconMessage.appendChild(miniAnimBtn);
                 contentCtn.appendChild(headerCtn);
                 contentCtn.appendChild(detail);
+                miniAnimBtn.appendChild(hiddenContent);
+                miniAnimBtn.appendChild(visibleContent);
+                hiddenContent.appendChild(trashIcon1);
+                hiddenContent.appendChild(clearCtn1);
+                visibleContent.appendChild(trashIcon2);
+                visibleContent.appendChild(clearCtn2);
                 
                 headerCtn.innerHTML = "Memory";
                 
