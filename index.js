@@ -1839,6 +1839,7 @@ function otherMathBtn(btnCheck){
                     visibleCont.innerHTML = "1/x";
                     hiddenCont.innerHTML = "1/x";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'1/x')");
+                    vertCont.className += ' shift';
                     break;
                 case 3:
                     supCont.innerHTML = "x";
@@ -1848,6 +1849,7 @@ function otherMathBtn(btnCheck){
                     visibleCont.appendChild(supCont);
                     hiddenCont.appendChild(supContV);
                     vertCont.setAttribute("onclick","calculatorFunc(null,'10^x')");
+                    vertCont.className += ' shift';
                     break;
                 case 4:
                     visibleCont.innerHTML = "e";
@@ -1876,6 +1878,7 @@ function otherMathBtn(btnCheck){
                     visibleCont.innerHTML = "log";
                     hiddenCont.innerHTML = "log";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'log')");
+                    vertCont.className += ' shift';
                     break;
                 case 3:
                     visibleCont.innerHTML = "π";
@@ -1894,12 +1897,14 @@ function otherMathBtn(btnCheck){
                     visibleCont.innerHTML = "sin";
                     hiddenCont.innerHTML = "sin";
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
+                    vertCont.className += ' shift';
                     vertCont.setAttribute("onclick","calculatorFunc(null,'sin')");
                     break;
                 case 1:
                     visibleCont.innerHTML = "cos";
                     hiddenCont.innerHTML = "cos";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'cos')");
+                    vertCont.className += ' shift';
                     break;
                 case 2:
                     visibleCont.innerHTML = "tg";
@@ -1907,38 +1912,44 @@ function otherMathBtn(btnCheck){
                     vertCont.setAttribute("onclick","calculatorFunc(null,'tg')");
                     break;
                 case 3:
-                    visibleCont.innerHTML = "arcsin";
-                    hiddenCont.innerHTML = "arcsin";
+                    visibleCont.innerHTML = "asin";
+                    hiddenCont.innerHTML = "asin";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'arcsin')");
+                    vertCont.className += ' shift';
                     break;
                 case 4:
-                    visibleCont.innerHTML = "arccos";
-                    hiddenCont.innerHTML = "arccos";
+                    visibleCont.innerHTML = "acos";
+                    hiddenCont.innerHTML = "acos";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'arccos')");
+                    vertCont.className += ' shift';
                     break;
             }
         } else if(btnCheck === "trig-2"){
             switch(i){
                 case 0:
-                    visibleCont.innerHTML = "arctg";
-                    hiddenCont.innerHTML = "arctg";
+                    visibleCont.innerHTML = "atg";
+                    hiddenCont.innerHTML = "atg";
                     vertCont.setAttribute("class","ui vertical animated basic teal button");
                     vertCont.setAttribute("onclick","calculatorFunc(null,'arctg')");
+                    vertCont.className += ' shift';
                     break;
                 case 1:
                     visibleCont.innerHTML = "hsin";
                     hiddenCont.innerHTML = "hsin";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'hsin')");
+                    vertCont.className += ' shift';
                     break;
                 case 2:
                     visibleCont.innerHTML = "hcos";
                     hiddenCont.innerHTML = "hcos";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'hcos')");
+                    vertCont.className += ' shift';
                     break;
                 case 3:
                     visibleCont.innerHTML = "htg";
                     hiddenCont.innerHTML = "htg";
                     vertCont.setAttribute("onclick","calculatorFunc(null,'htg')");
+                    vertCont.className += ' shift';
                     break;
                 case 4:
             }
@@ -2058,7 +2069,7 @@ function calculatorFunc(val,act){
             cache.setAttribute("placeholder",result);
         } else {
             result = parseFloat(cache.value);
-            cache.setAttribute("placeholder","(n)√" + result + " - " + "provide n-th of root...");
+            cache.setAttribute("placeholder","(n)√" + result + " - " + "provide n-th root...");
             cache.value = '';
             minToomler = true;
         }
@@ -2071,7 +2082,7 @@ function calculatorFunc(val,act){
             cache.setAttribute("placeholder",result);
         } else {
             result = parseFloat(cache.value);
-            cache.setAttribute("placeholder",result + "^(n) - provide n-th of power...");
+            cache.setAttribute("placeholder",result + "^(n) - provide n-th power...");
             cache.value = '';
             minToomler = true;
         }
