@@ -46,34 +46,66 @@
     width: 77px;
 }
 
-//Media quaries for smartphones:
-@media (max-width: 575px){
-    .ui.teal.ribbon.label {
-        display: none;
+//Media quaries for different smartphone screens-sizes:
+//Media quaries for 320x568px (iPhone 5):
+@media (max-width: 320px){
+    .ui.basic.label {
+        width: 30vw;
     }
     
-    .ui.teal.right.corner.label {
-        display: none;
-    }
-    
-    .help.circle.outline.icon.mobile {
-        float: right;
-    }
-    
-    .ui.secondary.segment.top {
-        margin-top: 30px;
-    }
-    
-    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.teal.button, .ui.vertical.animated.basic.red.button {
-        margin-left: 0.7px;
+    .ui.vertical.animated.teal.button {
+        padding: 3vw 6vw;
+        margin: 0 0.2vw;
     }
     
     .ui.vertical.animated.basic.teal.button.include {
-        margin-left: 3.3px;
+        margin: 0 0.72vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift, .ui.vertical.animated.teal.button.shift {
+        padding: 3vw 4.5vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift {
+        margin: 0 0.72vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button {
+        padding: 3vw 6vw;
+        margin: 0 0.2vw;
     }
 }
-//Media quaries for tablets and medium devices:
-@media (min-width: 576px) and (max-width: 991px){
+
+//Media quaries for 331px-414px (Samsung Galaxy S4-7 - Apple iPhone 6-7):
+@media (min-width: 321px) and (max-width: 414px){
+    .ui.basic.label {
+        width: 27vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button {
+        padding: 3vw 6vw;
+        margin: 0 0.25vw;
+    }
+    
+    .ui.vertical.animated.teal.button {
+        padding: 3vw 6vw;
+        margin: 0 0.25vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0 0.69vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift, .ui.vertical.animated.teal.button.shift {
+        padding: 3vw 4.5vw;
+    }
+    
+    .ui.mini.vertical.animated.teal.button.trash {
+        padding: 3vw 3vw;
+    }
+}
+
+@media (max-width: 600px){
     .ui.teal.ribbon.label {
         display: none;
     }
@@ -90,17 +122,76 @@
         margin-top: 30px;
     }
     
-    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.teal.button, .ui.vertical.animated.basic.red.button {
-        margin-left: 2.1px;
+    .ui.mini.vertical.animated.teal.button.trash {
+        padding: 3vw 3vw;
+    }
+}
+
+//Media quaries for tablets and medium devices in the vertical position:
+@media (min-width: 601px) and (max-width: 800px){
+    .ui.teal.ribbon.label {
+        display: none;
+    }
+    
+    .ui.teal.right.corner.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        float: right;
+    }
+    
+    .ui.secondary.segment.top {
+        margin-top: 30px;
     }
     
     .ui.vertical.animated.basic.teal.button.include {
         margin-left: 4.7px;
     }
+    
+    .item {
+        width: 12%;
+    }
+    
+    .ui.vertical.animated.basic.teal.button {
+        padding: 1vw 2vw;
+        margin: 0.05vw;
+    }
+    
+    .ui.vertical.animated.teal.button {
+        padding: 1vw 2vw;
+        margin: 0.05vw;
+    }
+    
+    .ui.vertical.animated.basic.red.button {
+        padding: 1vw 2vw;
+        margin: 0.05vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        padding: 1vw 1.5vw;
+        margin: 0.25vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift {
+        padding: 1vw 1.5vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.shift {
+        padding: 1vw 1.5vw;
+    }
+    
+    .right.menu {
+        display: none !important;
+    }
+    
+    .item {
+        width: 12.96vw;
+    }
 }
 
-//Media quaries for desktops:
-@media (min-width: 992px) and (min-width: 1200px){
+//Media quaries for tablets:
+/*@media (min-width: 801px) and (min-width: 1024px){
     .ui.teal.top.attached.label {
         display: none;
     }
@@ -128,4 +219,108 @@
         margin-left: 2.5px;
     }
     
+}*/
+
+//Media quaries for mediu
+@media (min-width: 801px) and (max-width: 1023px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 1.5vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    
+    .ui.segments.calc {
+        width: 30vw;
+        position: fixed;
+    }
+    
+    .item {
+        width: 10.78vw;
+        padding: 0 5vw;
+    }
+    
+    .right.menu {
+        display: none !important;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button {
+        padding: 1vw 2vw;
+        margin: 0.08vw;
+    }
+    
+    .ui.vertical.animated.teal.button {
+        padding: 1vw 2vw;
+        margin: 0;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.23vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift {
+        padding: 1vw 1.3vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.shift {
+        padding: 1vw 1.5vw;
+    }
 }
+
+//Media quaries for large tablets and small laptop screen sizes:
+@media (min-width: 1024px) and (max-width: 1280px){
+    .right.menu {
+        display: none !important;
+    }
+    
+    .item {
+        width: 13vw;
+    }
+    
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 1.5vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    
+    .ui.segments.calc {
+        width: 32.5vw;
+        position: fixed;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button {
+        padding: 1vw 2vw;
+        margin: 0.1vw;
+    }
+    
+    .ui.vertical.animated.teal.button {
+        margin: 0.1vw;
+        padding: 1vw 2vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.25vw;
+        padding: 1vw 2vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include.shift {
+        padding: 1vw 1.5vw;
+    }
+}
+
+//Media quaries for laptops in medium screen sizes:
