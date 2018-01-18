@@ -46,6 +46,10 @@
     width: 77px;
 }
 
+.menu > .item {
+    width: auto;
+}
+
 //Media quaries for different smartphone screens-sizes:
 //Media quaries for 320x568px (iPhone 5):
 @media (max-width: 320px){
@@ -275,7 +279,7 @@
 }
 
 //Media quaries for large tablets and small laptop screen sizes:
-@media (min-width: 1024px) and (max-width: 1280px){
+@media (min-width: 1024px) and (max-width: 1279px){
     .right.menu {
         display: none !important;
     }
@@ -321,6 +325,192 @@
     .ui.vertical.animated.basic.teal.button.include.shift {
         padding: 1vw 1.5vw;
     }
+    
+    .ui.mini.vertical.animated.teal.button.trash {
+        padding: 1vw;
+    }
 }
 
 //Media quaries for laptops in medium screen sizes:
+@media (min-width: 1280px) and (max-width: 1365px){
+    .item {
+        width: 11vw;
+    }
+    
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 1vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    
+    .search.link.icon {
+        padding-right: 11vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.13vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.23vw;
+    }
+    
+    .ui.segments.calc {
+        width: 31.8vw;
+        position: fixed;
+    }
+
+}
+
+//Media queries for medium screen sizes of laptops:
+@media (min-width: 1366px) and (max-width: 1439px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 1vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.12vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.21vw;
+    }
+    
+    .ui.segments.calc {
+        width: 29.8vw;
+        position: fixed;
+    }
+}
+
+//Media queries for large screen sizes of laptops:
+@media (min-width: 1440px) and (max-width: 1599px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 1vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.12vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.21vw;
+    }
+    
+    .ui.segments.calc {
+        width: 28.3vw;
+        position: fixed;
+    }
+}
+
+//Media queries for extra screen sizes of laptops and PC:
+@media (min-width: 1600px) and (max-width: 1679px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 0.85vw;
+        margin-top: 0.7vw;
+        margin-bottom: 0.7vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.09vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.include {
+        margin: 0.18vw;
+    }
+    
+    .ui.segments.calc {
+        width: 25.4vw;
+        position: fixed;
+    }
+}
+
+//Media queries for extra screen sizes of PC and laptops:
+@media (min-width: 1680px) and (max-width: 1700px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 0.85vw;
+        margin-top: 0.7vw;
+        margin-bottom: 0.7vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.basic.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.1vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.include {
+        margin: 0.183vw;
+    }
+    
+    .ui.segments.calc {
+        width: 24.2vw;
+        position: fixed;
+    }
+}
+
+//Media queries for extra large screen sizes of PC:
+@media (min-width: 1701px) and (max-width: 2400px){
+    .ui.teal.top.attached.label {
+        display: none;
+    }
+    
+    .help.circle.outline.icon.mobile {
+        display: none;
+    }
+    
+    .ui.teal.ribbon.label {
+        margin-left: 0.71vw;
+        margin-top: 0.7vw;
+        margin-bottom: 0.7vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button, .ui.vertical.animated.red.button, .ui.vertical.animated.teal.button {
+        margin: 0.08vw;
+    }
+    
+    .ui.vertical.animated.basic.teal.button.include {
+        margin: 0.15vw;
+    }
+}
